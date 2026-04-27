@@ -1,0 +1,13 @@
+fastapi==0.104.1
+uvicorn==0.24.0
+python-multipart==0.0.6
+motor==3.3.2
+pymongo==4.5.0
+pillow==10.1.0
+numpy==1.24.3
+torch==2.1.0
+torchvision==0.16.0
+python-dotenv==1.0.0
+cloudinary==1.36.0
+web3==6.11.1
+google-generativeai==0.3.0

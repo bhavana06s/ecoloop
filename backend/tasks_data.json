@@ -1,0 +1,79 @@
+{
+  "1": {
+    "id": "1",
+    "latitude": 13.079223242397214,
+    "longitude": 80.1861293880903,
+    "waste_type": "plastic",
+    "description": "",
+    "status": "completed",
+    "reported_by": "W2E_F6D23D348371",
+    "accepted_by": "W2E_50F3E3661C0E",
+    "created_at": "2026-04-27T18:02:52.075169",
+    "accepted_at": "2026-04-27T18:15:57.595233",
+    "completed_at": "2026-04-27T18:16:12.588189",
+    "completion_location": {
+      "lat": 13.0792617860818,
+      "lng": 80.1861551978482
+    }
+  },
+  "2": {
+    "id": "2",
+    "latitude": 13.079227835366124,
+    "longitude": 80.18614053368931,
+    "waste_type": "plastic",
+    "description": "",
+    "status": "fraudulent",
+    "reported_by": "W2E_F6D23D348371",
+    "accepted_by": null,
+    "created_at": "2026-04-27T18:15:03.265937",
+    "fraud_reason": "already_cleaned",
+    "verified_by": "W2E_50F3E3661C0E"
+  },
+  "3": {
+    "id": "3",
+    "latitude": 13.079245541092236,
+    "longitude": 80.18610428196455,
+    "waste_type": "plastic",
+    "description": "",
+    "status": "completed",
+    "reported_by": "W2E_F6D23D348371",
+    "accepted_by": "W2E_7C20F70B9F10",
+    "created_at": "2026-04-27T18:20:42.221316",
+    "accepted_at": "2026-04-27T18:21:39.101716",
+    "completed_at": "2026-04-27T18:21:49.787361",
+    "completion_location": {
+      "lat": 13.079244433455,
+      "lng": 80.18617037881748
+    }
+  },
+  "4": {
+    "id": "4",
+    "latitude": 13.079240175385811,
+    "longitude": 80.1860891356442,
+    "waste_type": "plastic",
+    "description": "",
+    "status": "completed",
+    "reported_by": "W2E_F6D23D348371",
+    "accepted_by": "W2E_50F3E3661C0E",
+    "created_at": "2026-04-27T19:40:53.081826",
+    "accepted_at": "2026-04-27T19:42:45.269199",
+    "completed_at": "2026-04-27T19:43:15.316598",
+    "completion_location": {
+      "lat": 13.079246892063823,
+      "lng": 80.1860254997872
+    }
+  },
+  "5": {
+    "id": "5",
+    "latitude": 13.079240175385811,
+    "longitude": 80.1860891356442,
+    "waste_type": "plastic",
+    "description": "",
+    "status": "fraudulent",
+    "reported_by": "W2E_F6D23D348371",
+    "accepted_by": null,
+    "created_at": "2026-04-27T19:41:18.990980",
+    "fraud_reason": "inaccessible",
+    "verified_by": "W2E_50F3E3661C0E"
+  }
+}

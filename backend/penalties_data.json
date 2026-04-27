@@ -1,0 +1,16 @@
+{
+  "W2E_F6D23D348371": [
+    {
+      "task_id": "2",
+      "reason": "already_cleaned",
+      "date": "2026-04-27T18:16:26.796754",
+      "penalty": 5
+    },
+    {
+      "task_id": "5",
+      "reason": "inaccessible",
+      "date": "2026-04-27T19:43:35.537150",
+      "penalty": 5
+    }
+  ]
+}

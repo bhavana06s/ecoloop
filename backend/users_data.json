@@ -1,0 +1,35 @@
+{
+  "bhavana06@gmail.com": {
+    "email": "bhavana06@gmail.com",
+    "name": "Bhavana S",
+    "password": "bhavss06",
+    "role": "reporter",
+    "wallet": "W2E_F6D23D348371",
+    "token_balance": 1,
+    "reports_count": 5,
+    "cleanups_count": 0,
+    "created_at": "2026-04-27T18:02:09.945930"
+  },
+  "chithra06@gmail.com": {
+    "email": "chithra06@gmail.com",
+    "name": "Chithra R",
+    "password": "chithra06",
+    "role": "volunteer",
+    "wallet": "W2E_50F3E3661C0E",
+    "token_balance": 14,
+    "reports_count": 0,
+    "cleanups_count": 2,
+    "created_at": "2026-04-27T18:15:42.915377"
+  },
+  "darshini06@gmail.com": {
+    "email": "darshini06@gmail.com",
+    "name": "Darshini S",
+    "password": "darsh06",
+    "role": "volunteer",
+    "wallet": "W2E_7C20F70B9F10",
+    "token_balance": 5,
+    "reports_count": 0,
+    "cleanups_count": 1,
+    "created_at": "2026-04-27T18:21:24.096744"
+  }
+}
