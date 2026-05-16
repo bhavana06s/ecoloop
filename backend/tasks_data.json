@@ -75,5 +75,65 @@
     "created_at": "2026-04-27T19:41:18.990980",
     "fraud_reason": "inaccessible",
     "verified_by": "W2E_50F3E3661C0E"
+  },
+  "6": {
+    "id": "6",
+    "latitude": 13.079240383490102,
+    "longitude": 80.18616088509759,
+    "waste_type": "plastic",
+    "description": "near park station",
+    "status": "completed",
+    "reported_by": "W2E_545BCDA8361E",
+    "accepted_by": "W2E_50F3E3661C0E",
+    "created_at": "2026-04-29T15:51:39.573667",
+    "accepted_at": "2026-04-29T15:52:47.253358",
+    "completed_at": "2026-04-29T15:53:11.388903",
+    "completion_location": {
+      "lat": 13.07924143641724,
+      "lng": 80.18605021075624
+    }
+  },
+  "7": {
+    "id": "7",
+    "latitude": 13.079240383490102,
+    "longitude": 80.18616088509759,
+    "waste_type": "plastic",
+    "description": "",
+    "status": "fraudulent",
+    "reported_by": "W2E_545BCDA8361E",
+    "accepted_by": null,
+    "created_at": "2026-04-29T15:52:02.799240",
+    "fraud_reason": "waste_not_found",
+    "verified_by": "W2E_50F3E3661C0E"
+  },
+  "8": {
+    "id": "8",
+    "latitude": 13.079249663369055,
+    "longitude": 80.1860426297019,
+    "waste_type": "plastic",
+    "description": "Near roadside of Parktown.",
+    "status": "completed",
+    "reported_by": "W2E_F6D23D348371",
+    "accepted_by": "W2E_7C20F70B9F10",
+    "created_at": "2026-04-29T15:59:51.342850",
+    "accepted_at": "2026-04-29T16:02:06.993014",
+    "completed_at": "2026-04-29T16:08:32.930639",
+    "completion_location": {
+      "lat": 13.079237267771557,
+      "lng": 80.1861619439613
+    }
+  },
+  "9": {
+    "id": "9",
+    "latitude": 13.079237267771557,
+    "longitude": 80.1861619439613,
+    "waste_type": "plastic",
+    "description": "",
+    "status": "fraudulent",
+    "reported_by": "W2E_F6D23D348371",
+    "accepted_by": null,
+    "created_at": "2026-04-29T16:07:38.082156",
+    "fraud_reason": "waste_not_found",
+    "verified_by": "W2E_7C20F70B9F10"
   }
 }

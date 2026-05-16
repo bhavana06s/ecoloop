@@ -22,4 +22,4 @@ STORAGE_TYPE = "json"  # Options: "json", "firebase", "mongodb"
 #     db = firestore.client()
 # ============================================
 
-print(f"📦 Using {STORAGE_TYPE.upper()} storage backend")
+print(f" Using {STORAGE_TYPE.upper()} storage backend")

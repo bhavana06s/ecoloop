@@ -11,6 +11,20 @@
       "reason": "inaccessible",
       "date": "2026-04-27T19:43:35.537150",
       "penalty": 5
+    },
+    {
+      "task_id": "9",
+      "reason": "waste_not_found",
+      "date": "2026-04-29T16:09:07.270021",
+      "penalty": 5
+    }
+  ],
+  "W2E_545BCDA8361E": [
+    {
+      "task_id": "7",
+      "reason": "waste_not_found",
+      "date": "2026-04-29T15:53:34.499204",
+      "penalty": 5
     }
   ]
 }

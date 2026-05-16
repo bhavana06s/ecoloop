@@ -6,7 +6,7 @@ import numpy as np
 
 class WasteDetector:
     def __init__(self):
-        print("🔄 Loading waste detection model...")
+        print(" Loading waste detection model...")
         
         # Use a standard pre-trained ResNet model from torchvision
         self.model = torch.hub.load('pytorch/vision', 'resnet50', pretrained=True)
@@ -30,7 +30,7 @@ class WasteDetector:
             'ewaste': ['phone', 'computer', 'laptop', 'keyboard', 'mouse', 'monitor', 'battery']
         }
         
-        print("✅ Model loaded successfully!")
+        print(" Model loaded successfully!")
     
     def detect(self, image_bytes):
         """Detect waste type from image bytes"""
@@ -86,7 +86,7 @@ class WasteDetector:
             # Normalize confidence to 0-1 range
             confidence = min(confidence, 0.95)
             
-            print(f"🔍 Detected: {waste_type} (confidence: {confidence:.2%})")
+            print(f" Detected: {waste_type} (confidence: {confidence:.2%})")
             
             return {
                 "waste_type": waste_type,
@@ -97,51 +97,51 @@ class WasteDetector:
             }
             
         except Exception as e:
-            print(f"⚠️ Detection error: {e}")
+            print(f" Detection error: {e}")
             return self.fallback_detection(image_bytes)
     
     def get_recommendations(self, waste_type):
         recommendations = {
             "plastic": [
-                "♻️ Check for recycling symbol",
-                "🧼 Clean and dry before recycling",
-                "🚫 Avoid single-use plastics",
-                "📦 Remove labels and caps"
+                " Check for recycling symbol",
+                " Clean and dry before recycling",
+                " Avoid single-use plastics",
+                " Remove labels and caps"
             ],
             "metal": [
-                "🥫 Crush cans to save space",
-                "♻️ Metal is infinitely recyclable",
-                "💰 Aluminum has scrap value",
-                "🔧 Remove any plastic parts"
+                " Crush cans to save space",
+                " Metal is infinitely recyclable",
+                " Aluminum has scrap value",
+                " Remove any plastic parts"
             ],
             "glass": [
-                "🍾 Rinse before recycling",
-                "♻️ Glass never loses quality",
-                "🔘 Remove metal lids/caps",
-                "🎨 Can be upcycled into decor"
+                " Rinse before recycling",
+                " Glass never loses quality",
+                " Remove metal lids/caps",
+                " Can be upcycled into decor"
             ],
             "organic": [
-                "🌱 Start a compost bin",
-                "🍽️ Reduce food waste",
-                "🐛 Great for worm farming",
-                "🌿 Use as natural fertilizer"
+                " Start a compost bin",
+                " Reduce food waste",
+                " Great for worm farming",
+                " Use as natural fertilizer"
             ],
             "ewaste": [
-                "⚡ Contains toxic materials",
-                "📱 Wipe all personal data",
-                "🔋 NEVER dispose in regular trash",
-                "🏪 Take to certified e-waste center"
+                " Contains toxic materials",
+                " Wipe all personal data",
+                " NEVER dispose in regular trash",
+                " Take to certified e-waste center"
             ],
             "paper": [
-                "📦 Flatten cardboard boxes",
-                "💧 Keep paper dry and clean",
-                "✂️ Remove plastic windows",
-                "♻️ Paper can be recycled 5-7 times"
+                " Flatten cardboard boxes",
+                " Keep paper dry and clean",
+                " Remove plastic windows",
+                " Paper can be recycled 5-7 times"
             ],
             "general_waste": [
-                "♻️ Try the 3 Rs: Reduce, Reuse, Recycle",
-                "🗑️ Dispose responsibly in designated bins",
-                "💚 Consider if item can be repurposed"
+                " Try the 3 Rs: Reduce, Reuse, Recycle",
+                " Dispose responsibly in designated bins",
+                " Consider if item can be repurposed"
             ]
         }
         return recommendations.get(waste_type, recommendations["general_waste"])

@@ -34,27 +34,27 @@ def load_data():
             with open(USERS_FILE, 'r') as f:
                 users.clear()
                 users.update(json.load(f))
-            print(f"✅ Loaded {len(users)} users from file")
+            print(f" Loaded {len(users)} users from file")
         else:
-            print("📝 No existing users file, starting fresh")
+            print(" No existing users file, starting fresh")
         
         if os.path.exists(TASKS_FILE):
             with open(TASKS_FILE, 'r') as f:
                 tasks.clear()
                 tasks.update(json.load(f))
-            print(f"✅ Loaded {len(tasks)} tasks from file")
+            print(f" Loaded {len(tasks)} tasks from file")
         
         if os.path.exists(PENALTIES_FILE):
             with open(PENALTIES_FILE, 'r') as f:
                 reporter_penalties.clear()
                 reporter_penalties.update(json.load(f))
-            print(f"✅ Loaded penalties data")
+            print(f" Loaded penalties data")
         
         if os.path.exists(COUNTER_FILE):
             with open(COUNTER_FILE, 'r') as f:
                 counter_data = json.load(f)
                 task_counter = counter_data.get("task_counter", 1)
-            print(f"✅ Loaded task_counter: {task_counter}")
+            print(f" Loaded task_counter: {task_counter}")
     except Exception as e:
         print(f"⚠️ Error loading data: {e}")
 
@@ -69,9 +69,9 @@ def save_data():
             json.dump(reporter_penalties, f, indent=2, default=str)
         with open(COUNTER_FILE, 'w') as f:
             json.dump({"task_counter": task_counter}, f, indent=2)
-        print(f"💾 Data saved: {len(users)} users, {len(tasks)} tasks")
+        print(f" Data saved: {len(users)} users, {len(tasks)} tasks")
     except Exception as e:
-        print(f"⚠️ Error saving data: {e}")
+        print(f" Error saving data: {e}")
 
 # In-memory storage
 users = {}
@@ -103,7 +103,7 @@ async def register(
     password: str = Form(...),
     role: str = Form(...)
 ):
-    print(f"📝 Registering: {email}")
+    print(f" Registering: {email}")
     
     # Check if email exists
     if email in users:
@@ -131,7 +131,7 @@ async def register(
     
     save_data()  # ADDED: Save after registration
     
-    print(f"✅ User registered: {email} -> Wallet: {wallet}")
+    print(f" User registered: {email} -> Wallet: {wallet}")
     
     return {
         "success": True,
@@ -151,7 +151,7 @@ async def login(
     email: str = Form(...),
     password: str = Form(...)
 ):
-    print(f"🔐 Login attempt: {email}")
+    print(f" Login attempt: {email}")
     
     # Find user by email
     if email not in users:
@@ -169,7 +169,7 @@ async def login(
             content={"success": False, "error": "Invalid password"}
         )
     
-    print(f"✅ Login successful: {email}")
+    print(f" Login successful: {email}")
     
     return {
         "success": True,
@@ -252,58 +252,58 @@ async def detect_waste(file: UploadFile = File(...)):
             waste_type = "organic"
             confidence = 0.85
             recommendations = [
-                "🌱 This appears to be FOOD/ORGANIC waste!",
-                "✅ Great for composting",
-                "🍽️ Start a compost bin at home",
-                "🚫 Don't mix with plastic recycling"
+                " This appears to be FOOD/ORGANIC waste!",
+                " Great for composting",
+                " Start a compost bin at home",
+                " Don't mix with plastic recycling"
             ]
         # PLASTIC detection (smooth, bright colors, artificial look)
         elif (avg_r > 150 or avg_g > 150 or avg_b > 150) and edge_density < 20:
             waste_type = "plastic"
             confidence = 0.78
             recommendations = [
-                "⚠️ This appears to be PLASTIC",
-                "♻️ Check recycling symbol",
-                "🧼 Clean before recycling",
-                "🚫 Avoid single-use plastics"
+                " This appears to be PLASTIC",
+                " Check recycling symbol",
+                " Clean before recycling",
+                " Avoid single-use plastics"
             ]
         # METAL detection (gray/silver tones)
         elif abs(avg_r - avg_g) < 30 and abs(avg_g - avg_b) < 30 and avg_r < 150:
             waste_type = "metal"
             confidence = 0.72
             recommendations = [
-                "🥫 This appears to be METAL",
-                "♻️ Metal is infinitely recyclable",
-                "💰 Has scrap value",
-                "🥫 Crush cans to save space"
+                " This appears to be METAL",
+                " Metal is infinitely recyclable",
+                " Has scrap value",
+                " Crush cans to save space"
             ]
         # GLASS detection (transparent look, blue/green tint)
         elif avg_b > avg_r * 1.2 or (avg_g > avg_r * 1.1 and avg_b > avg_r * 1.1):
             waste_type = "glass"
             confidence = 0.70
             recommendations = [
-                "🍾 This appears to be GLASS",
-                "♻️ Glass never loses quality",
-                "🍾 Rinse before recycling",
-                "🔘 Remove metal lids"
+                " This appears to be GLASS",
+                " Glass never loses quality",
+                " Rinse before recycling",
+                " Remove metal lids"
             ]
         # PAPER detection (high brightness)
         elif avg_r > 200 and avg_g > 200 and avg_b > 200:
             waste_type = "paper"
             confidence = 0.75
             recommendations = [
-                "📄 This appears to be PAPER",
-                "📦 Flatten cardboard boxes",
-                "♻️ Paper can be recycled 5-7 times",
-                "💧 Keep dry for recycling"
+                " This appears to be PAPER",
+                " Flatten cardboard boxes",
+                " Paper can be recycled 5-7 times",
+                " Keep dry for recycling"
             ]
         else:
             waste_type = "general_waste"
             confidence = 0.65
             recommendations = [
-                "♻️ Sort waste properly",
-                "🗑️ Use correct bin",
-                "💚 Reduce, Reuse, Recycle"
+                " Sort waste properly",
+                " Use correct bin",
+                " Reduce, Reuse, Recycle"
             ]
         
         return {
@@ -512,9 +512,9 @@ async def complete_task(
 ):
     """Complete a cleanup task and award tokens (with verification)"""
     
-    print(f"📝 Completing task {task_id} for volunteer {wallet_address}")
-    print(f"📍 Location: {latitude}, {longitude}")
-    print(f"🗑️ Waste found: {waste_found}")
+    print(f" Completing task {task_id} for volunteer {wallet_address}")
+    print(f" Location: {latitude}, {longitude}")
+    print(f" Waste found: {waste_found}")
     
     if task_id not in tasks:
         return JSONResponse(
@@ -539,7 +539,7 @@ async def complete_task(
     a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
     distance_meters = 6371 * 2 * atan2(sqrt(a), sqrt(1-a)) * 1000
     
-    print(f"📏 Distance from task: {distance_meters:.0f} meters")
+    print(f" Distance from task: {distance_meters:.0f} meters")
     
     # Handle issue reporting
     if issue_reported == "no_dustbin":
@@ -587,7 +587,7 @@ async def complete_task(
             user["token_balance"] = user.get("token_balance", 0) + 5
             user["cleanups_count"] = user.get("cleanups_count", 0) + 1
             volunteer_user = user
-            print(f"💰 Awarded 5 tokens to volunteer {wallet_address}. New balance: {user['token_balance']}")
+            print(f" Awarded 5 tokens to volunteer {wallet_address}. New balance: {user['token_balance']}")
             break
     
     save_data()  # ADDED: Save after task completion
@@ -660,11 +660,11 @@ def get_my_tasks(wallet_address: str):
 
 if __name__ == "__main__":
     print("\n" + "="*60)
-    print("🚀 WASTE2EARN BACKEND STARTING...")
-    print("📍 Server: http://localhost:8000")
-    print("📝 Test: http://localhost:8000/api/test")
-    print("📋 API Docs: http://localhost:8000/docs")
-    print("👥 Users endpoint: http://localhost:8000/api/users")
-    print("💾 Data will be saved to JSON files (persistent storage)")
+    print(" WASTE2EARN BACKEND STARTING...")
+    print(" Server: http://localhost:8000")
+    print(" Test: http://localhost:8000/api/test")
+    print(" API Docs: http://localhost:8000/docs")
+    print(" Users endpoint: http://localhost:8000/api/users")
+    print(" Data will be saved to JSON files (persistent storage)")
     print("="*60 + "\n")
     uvicorn.run(app, host="127.0.0.1", port=8000)
