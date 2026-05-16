@@ -10,7 +10,7 @@ function Leaderboard() {
 
   const fetchLeaderboard = async () => {
     try {
-      const response = await fetch('http://localhost:8000/api/leaderboard');
+      const response = await fetch('https://ecoloop-backend-hy7l.onrender.com/api/leaderboard');
       const data = await response.json();
       setLeaderboard(data.leaderboard || []);
     } catch (error) {
@@ -24,17 +24,17 @@ function Leaderboard() {
   };
 
   const getRankIcon = (index) => {
-    if (index === 0) return '🥇';
-    if (index === 1) return '🥈';
-    if (index === 2) return '🥉';
+    if (index === 0) return '1st';
+    if (index === 1) return '2nd';
+    if (index === 2) return '3rd';
     return `${index + 1}th`;
   };
 
   return (
     <div className="dashboard-container">
       <div className="welcome-card">
-        <h1>🏆 Top Waste Warriors</h1>
-        <p>Meet the heroes making our planet cleaner! 🌍</p>
+        <h1> Top Waste Warriors</h1>
+        <p>Meet the heroes making our planet cleaner! </p>
       </div>
       
       <div className="leaderboard">
@@ -47,7 +47,7 @@ function Leaderboard() {
           <div style={{ padding: '2rem', textAlign: 'center' }}>Loading...</div>
         ) : leaderboard.length === 0 ? (
           <div style={{ padding: '2rem', textAlign: 'center' }}>
-            <p>No users yet. Be the first to join! 🎉</p>
+            <p>No users yet. Be the first to join! </p>
           </div>
         ) : (
           leaderboard.map((user, index) => (
@@ -59,7 +59,7 @@ function Leaderboard() {
                 <div>
                   <strong>{user.name}</strong>
                   <div style={{ fontSize: '0.85rem', color: '#666' }}>
-                    {user.role === 'reporter' ? '📸 Reporter' : '💚 Volunteer'}
+                    {user.role === 'reporter' ? ' Reporter' : ' Volunteer'}
                   </div>
                 </div>
               </div>
@@ -79,10 +79,10 @@ function Leaderboard() {
       <div style={{ marginTop: '2rem', background: 'white', borderRadius: '20px', padding: '1.5rem' }}>
         <h3>💡 How to Earn More Tokens:</h3>
         <ul style={{ marginTop: '1rem', paddingLeft: '1.5rem' }}>
-          <li>📸 Report waste - Earn 2 W2E per report</li>
-          <li>✅ Clean up waste - Earn 5 W2E per cleanup</li>
-          <li>🏆 Reach top 3 on leaderboard - Get recognition!</li>
-          <li>🌟 Complete tasks quickly - Higher chance for rewards!</li>
+          <li> Report waste - Earn 2 W2E per report</li>
+          <li> Clean up waste - Earn 5 W2E per cleanup</li>
+          <li> Reach top 3 on leaderboard - Get recognition!</li>
+          <li> Complete tasks quickly - Higher chance for rewards!</li>
         </ul>
       </div>
     </div>

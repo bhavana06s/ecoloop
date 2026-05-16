@@ -40,7 +40,7 @@ function VolunteerDashboard({ userName, userWallet }) {
 
   const loadUserStats = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/api/user-stats/${userWallet}`);
+      const response = await fetch(`https://ecoloop-backend-hy7l.onrender.com/api/user-stats/${userWallet}`);
       const data = await response.json();
       if (!data.error) {
         setUserStats({
@@ -81,7 +81,7 @@ function VolunteerDashboard({ userName, userWallet }) {
     if (!userLocation) return;
     
     try {
-      const response = await fetch(`http://localhost:8000/api/nearby-tasks?lat=${userLocation.lat}&lng=${userLocation.lng}&radius=10`);
+      const response = await fetch(`https://ecoloop-backend-hy7l.onrender.com/api/nearby-tasks?lat=${userLocation.lat}&lng=${userLocation.lng}&radius=10`);
       const data = await response.json();
       setTasks(data.tasks || []);
     } catch (error) {
@@ -94,7 +94,7 @@ function VolunteerDashboard({ userName, userWallet }) {
 
   const fetchMyTasks = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/api/my-tasks/${userWallet}`);
+      const response = await fetch(`https://ecoloop-backend-hy7l.onrender.com/api/my-tasks/${userWallet}`);
       const data = await response.json();
       setMyTasks(data.tasks || []);
     } catch (error) {
@@ -107,13 +107,13 @@ function VolunteerDashboard({ userName, userWallet }) {
     formData.append('wallet_address', userWallet);
     
     try {
-      const response = await fetch(`http://localhost:8000/api/accept-task/${taskId}`, {
+      const response = await fetch(`https://ecoloop-backend-hy7l.onrender.com/api/accept-task/${taskId}`, {
         method: 'POST',
         body: formData
       });
       
       if (response.ok) {
-        alert('✅ Task accepted! Go to the location, clean up, then verify completion.');
+        alert(' Task accepted! Go to the location, clean up, then verify completion.');
         fetchTasks();
         fetchMyTasks();
         loadUserStats();
@@ -121,7 +121,7 @@ function VolunteerDashboard({ userName, userWallet }) {
         alert('Unable to accept task. Please try again.');
       }
     } catch (error) {
-      alert('✅ Task accepted! (Demo mode)\n\nGo to the location to complete.');
+      alert(' Task accepted! (Demo mode)\n\nGo to the location to complete.');
       fetchTasks();
       fetchMyTasks();
     }
@@ -183,7 +183,7 @@ function VolunteerDashboard({ userName, userWallet }) {
     }
     
     if (!wasteFound) {
-      alert('⚠️ Please confirm that you found the waste at this location by checking the "Waste Found" box.');
+      alert(' Please confirm that you found the waste at this location by checking the "Waste Found" box.');
       return;
     }
     
@@ -198,7 +198,7 @@ function VolunteerDashboard({ userName, userWallet }) {
     }
     
     try {
-      const response = await fetch(`http://localhost:8000/api/complete-task/${selectedTask.id}`, {
+      const response = await fetch(`https://ecoloop-backend-hy7l.onrender.com/api/complete-task/${selectedTask.id}`, {
         method: 'POST',
         body: formData
       });
@@ -206,7 +206,7 @@ function VolunteerDashboard({ userName, userWallet }) {
       const result = await response.json();
       
       if (result.success) {
-        alert(`🎉 ${result.message}`);
+        alert(` ${result.message}`);
         setShowCompletionModal(false);
         setSelectedTask(null);
         setWasteFound(false);
@@ -216,16 +216,16 @@ function VolunteerDashboard({ userName, userWallet }) {
         loadUserStats();
       } else {
         if (result.require_confirmation) {
-          alert('⚠️ Please confirm that you found the waste at this location.');
+          alert(' Please confirm that you found the waste at this location.');
         } else if (result.current_distance) {
-          alert(`⚠️ You are ${result.current_distance}m away from the waste location.\n\nPlease go to the exact location to verify cleanup.`);
+          alert(` You are ${result.current_distance}m away from the waste location.\n\nPlease go to the exact location to verify cleanup.`);
         } else {
-          alert(`⚠️ ${result.message}`);
+          alert(` ${result.message}`);
         }
       }
     } catch (error) {
       console.error('Error completing task:', error);
-      alert('🎉 Demo: Task completed! You earned 5 W2E tokens!');
+      alert(' Demo: Task completed! You earned 5 W2E tokens!');
       setShowCompletionModal(false);
       setSelectedTask(null);
       setWasteFound(false);
@@ -254,7 +254,7 @@ function VolunteerDashboard({ userName, userWallet }) {
     formData.append('reason', fakeReason);
     
     try {
-      const response = await fetch(`http://localhost:8000/api/report-fake-task/${selectedFakeTask.id}`, {
+      const response = await fetch(`https://ecoloop-backend-hy7l.onrender.com/api/report-fake-task/${selectedFakeTask.id}`, {
         method: 'POST',
         body: formData
       });
@@ -262,7 +262,7 @@ function VolunteerDashboard({ userName, userWallet }) {
       const result = await response.json();
       
       if (result.success) {
-        alert(`⚠️ ${result.message}`);
+        alert(` ${result.message}`);
         setShowFakeReportModal(false);
         setSelectedFakeTask(null);
         setFakeReason('');
@@ -284,27 +284,27 @@ function VolunteerDashboard({ userName, userWallet }) {
   return (
     <div className="dashboard-container">
       <div className="welcome-card">
-        <h1>💚 Welcome, {userName}!</h1>
+        <h1> Welcome, {userName}!</h1>
         <p>Your Wallet: <strong>{userWallet}</strong></p>
-        <p>Find nearby waste cleanup tasks and earn rewards! 🗑️💰</p>
+        <p>Find nearby waste cleanup tasks and earn rewards! </p>
         <p style={{ fontSize: '0.85rem', marginTop: '0.5rem' }}>
-          ⚠️ If you find a fake report, you can report it and earn compensation!
+           If you find a fake report, you can report it and earn compensation!
         </p>
       </div>
       
       <div className="stats-grid">
         <div className="stat-card">
-          <div className="stat-icon">💰</div>
+          <div className="stat-icon"></div>
           <div className="stat-value">{userStats.token_balance || 0}</div>
           <div>W2E Tokens</div>
         </div>
         <div className="stat-card">
-          <div className="stat-icon">✅</div>
+          <div className="stat-icon"></div>
           <div className="stat-value">{userStats.cleanups_count || 0}</div>
           <div>Cleanups Done</div>
         </div>
         <div className="stat-card">
-          <div className="stat-icon">🌍</div>
+          <div className="stat-icon"></div>
           <div className="stat-value">{(userStats.cleanups_count || 0) * 0.5}</div>
           <div>kg CO₂ Saved</div>
         </div>
@@ -313,12 +313,12 @@ function VolunteerDashboard({ userName, userWallet }) {
       {/* My Active Tasks */}
       {myTasks.filter(t => t.status === 'accepted').length > 0 && (
         <>
-          <h2 style={{ color: 'white', marginBottom: '1rem' }}>📋 My Active Tasks</h2>
+          <h2 style={{ color: 'white', marginBottom: '1rem' }}> My Active Tasks</h2>
           {myTasks.filter(t => t.status === 'accepted').map(task => (
             <div key={task.id} className="stat-card" style={{ marginBottom: '1rem', borderLeft: '4px solid #F59E0B' }}>
-              <h4>🗑️ {task.waste_type?.toUpperCase()}</h4>
-              <p>📍 Location: {task.latitude?.toFixed(6)}, {task.longitude?.toFixed(6)}</p>
-              <p>💰 Reward: 5 W2E tokens</p>
+              <h4> {task.waste_type?.toUpperCase()}</h4>
+              <p> Location: {task.latitude?.toFixed(6)}, {task.longitude?.toFixed(6)}</p>
+              <p> Reward: 5 W2E tokens</p>
               <button 
                 onClick={() => openCompletionModal(task)}
                 style={{
@@ -332,29 +332,29 @@ function VolunteerDashboard({ userName, userWallet }) {
                   marginTop: '0.5rem'
                 }}
               >
-                📸 Verify Cleanup & Complete
+                 Verify Cleanup & Complete
               </button>
             </div>
           ))}
         </>
       )}
       
-      <h2 style={{ color: 'white', marginBottom: '1rem', marginTop: '2rem' }}>🗺️ Available Tasks Nearby</h2>
+      <h2 style={{ color: 'white', marginBottom: '1rem', marginTop: '2rem' }}> Available Tasks Nearby</h2>
       
       {userLocation && (
         <div className="map-container" style={{ height: '450px', borderRadius: '20px', overflow: 'hidden', marginBottom: '2rem' }}>
           <MapContainer center={[userLocation.lat, userLocation.lng]} zoom={13} style={{ height: '100%', width: '100%' }}>
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             <Marker position={[userLocation.lat, userLocation.lng]}>
-              <Popup>📍 You are here</Popup>
+              <Popup> You are here</Popup>
             </Marker>
             {tasks.filter(t => t.status === 'pending').map(task => (
               <Marker key={task.id} position={[task.latitude, task.longitude]}>
                 <Popup>
                   <div style={{ minWidth: '250px' }}>
-                    <h4>🗑️ {task.waste_type?.toUpperCase()}</h4>
-                    <p>📍 Distance: {task.distance_km} km</p>
-                    <p>💰 Reward: 5 W2E tokens</p>
+                    <h4> {task.waste_type?.toUpperCase()}</h4>
+                    <p> Distance: {task.distance_km} km</p>
+                    <p> Reward: 5 W2E tokens</p>
                     <hr />
                     <button 
                       onClick={() => acceptTask(task.id)} 
@@ -370,7 +370,7 @@ function VolunteerDashboard({ userName, userWallet }) {
                         fontWeight: '600'
                       }}
                     >
-                      ✅ Accept Task & Clean
+                       Accept Task & Clean
                     </button>
                     <button 
                       onClick={() => openFakeReportModal(task)} 
@@ -385,10 +385,10 @@ function VolunteerDashboard({ userName, userWallet }) {
                         fontWeight: '600'
                       }}
                     >
-                      🚫 Report Fake Waste
+                       Report Fake Waste
                     </button>
                     <p style={{ fontSize: '0.7rem', color: '#666', marginTop: '0.5rem' }}>
-                      ⚠️ Reporting fake waste deducts tokens from reporter
+                       Reporting fake waste deducts tokens from reporter
                     </p>
                   </div>
                 </Popup>
@@ -400,23 +400,23 @@ function VolunteerDashboard({ userName, userWallet }) {
       
       {/* Tasks List */}
       <div style={{ marginTop: '2rem' }}>
-        <h3 style={{ color: 'white', marginBottom: '1rem' }}>📋 Available Tasks List</h3>
+        <h3 style={{ color: 'white', marginBottom: '1rem' }}> Available Tasks List</h3>
         {loading ? (
           <div className="stat-card" style={{ textAlign: 'center' }}>
             <p>Loading tasks...</p>
           </div>
         ) : tasks.filter(t => t.status === 'pending').length === 0 ? (
           <div className="stat-card" style={{ textAlign: 'center' }}>
-            <p>🎉 No pending tasks nearby! Check back later.</p>
+            <p> No pending tasks nearby! Check back later.</p>
           </div>
         ) : (
           tasks.filter(t => t.status === 'pending').map(task => (
             <div key={task.id} className="stat-card" style={{ marginBottom: '1rem' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap' }}>
                 <div>
-                  <h4>🗑️ {task.waste_type?.toUpperCase()}</h4>
-                  <p>📍 {task.distance_km} km away</p>
-                  <p>💰 Reward: 5 W2E tokens</p>
+                  <h4> {task.waste_type?.toUpperCase()}</h4>
+                  <p> {task.distance_km} km away</p>
+                  <p> Reward: 5 W2E tokens</p>
                 </div>
                 <div>
                   <button 
@@ -432,7 +432,7 @@ function VolunteerDashboard({ userName, userWallet }) {
                       marginRight: '0.5rem'
                     }}
                   >
-                    Accept Task ✅
+                    Accept Task 
                   </button>
                   <button 
                     onClick={() => openFakeReportModal(task)}
@@ -446,7 +446,7 @@ function VolunteerDashboard({ userName, userWallet }) {
                       fontWeight: '600'
                     }}
                   >
-                    Fake Report ❌
+                    Fake Report 
                   </button>
                 </div>
               </div>
@@ -478,9 +478,9 @@ function VolunteerDashboard({ userName, userWallet }) {
             maxHeight: '80vh',
             overflow: 'auto'
           }}>
-            <h2>✅ Verify Cleanup</h2>
+            <h2> Verify Cleanup</h2>
             <p>Task: <strong>{selectedTask.waste_type?.toUpperCase()}</strong></p>
-            <p>📍 Task Location: {selectedTask.latitude?.toFixed(6)}, {selectedTask.longitude?.toFixed(6)}</p>
+            <p> Task Location: {selectedTask.latitude?.toFixed(6)}, {selectedTask.longitude?.toFixed(6)}</p>
             
             <div style={{ margin: '1rem 0', padding: '1rem', background: '#F0FDF4', borderRadius: '10px', border: '2px solid #10B981' }}>
               <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
@@ -495,19 +495,19 @@ function VolunteerDashboard({ userName, userWallet }) {
             </div>
             
             <div style={{ margin: '1rem 0', padding: '1rem', background: '#EFF6FF', borderRadius: '10px' }}>
-              <p><strong>📍 Your current location:</strong></p>
+              <p><strong> Your current location:</strong></p>
               {completionLocation ? (
                 <p style={{ color: '#10B981' }}>
-                  ✅ Lat: {completionLocation.lat.toFixed(6)}<br />
-                  ✅ Lng: {completionLocation.lng.toFixed(6)}
+                   Lat: {completionLocation.lat.toFixed(6)}<br />
+                   Lng: {completionLocation.lng.toFixed(6)}
                 </p>
               ) : (
-                <p style={{ color: '#F59E0B' }}>📍 Getting your location... Please wait.</p>
+                <p style={{ color: '#F59E0B' }}> Getting your location... Please wait.</p>
               )}
             </div>
             
             <div style={{ margin: '1rem 0' }}>
-              <p><strong>⚠️ Issue with dustbin?</strong></p>
+              <p><strong> Issue with dustbin?</strong></p>
               <select 
                 value={issueReason} 
                 onChange={(e) => setIssueReason(e.target.value)}
@@ -519,17 +519,17 @@ function VolunteerDashboard({ userName, userWallet }) {
                   marginTop: '0.5rem'
                 }}
               >
-                <option value="">No issue - Dustbin available ✅</option>
-                <option value="no_dustbin">❌ No dustbin at location</option>
-                <option value="dustbin_full">⚠️ Dustbin is full</option>
+                <option value="">No issue - Dustbin available </option>
+                <option value="no_dustbin"> No dustbin at location</option>
+                <option value="dustbin_full"> Dustbin is full</option>
               </select>
             </div>
             
             <div style={{ background: '#FEF3C7', padding: '1rem', borderRadius: '10px', marginBottom: '1rem' }}>
               <p style={{ color: '#92400E', margin: 0, fontSize: '0.85rem' }}>
-                📍 You must be at the exact waste location to verify cleanup.<br />
-                ✅ You must check the "Waste Found" box.<br />
-                💰 You will earn 5 W2E tokens upon successful verification.
+                 You must be at the exact waste location to verify cleanup.<br />
+                 You must check the "Waste Found" box.<br />
+                 You will earn 5 W2E tokens upon successful verification.
               </p>
             </div>
             
@@ -549,7 +549,7 @@ function VolunteerDashboard({ userName, userWallet }) {
                   fontSize: '1rem'
                 }}
               >
-                ✅ Confirm & Earn 5 Tokens
+                 Confirm & Earn 5 Tokens
               </button>
               <button
                 onClick={() => {
@@ -596,9 +596,9 @@ function VolunteerDashboard({ userName, userWallet }) {
             maxWidth: '500px',
             width: '90%'
           }}>
-            <h2>⚠️ Report Fake Waste</h2>
+            <h2> Report Fake Waste</h2>
             <p>Task: <strong>{selectedFakeTask.waste_type?.toUpperCase()}</strong></p>
-            <p>📍 Location: {selectedFakeTask.latitude?.toFixed(6)}, {selectedFakeTask.longitude?.toFixed(6)}</p>
+            <p> Location: {selectedFakeTask.latitude?.toFixed(6)}, {selectedFakeTask.longitude?.toFixed(6)}</p>
             
             <div style={{ margin: '1rem 0' }}>
               <p><strong>Why can't you find the waste?</strong></p>
@@ -614,28 +614,28 @@ function VolunteerDashboard({ userName, userWallet }) {
                 }}
               >
                 <option value="">Select a reason...</option>
-                <option value="waste_not_found">❌ No waste found at this location</option>
-                <option value="wrong_location">📍 Wrong location marked on map</option>
-                <option value="already_cleaned">✓ Waste already cleaned by someone else</option>
-                <option value="inaccessible">🚫 Location is inaccessible</option>
+                <option value="waste_not_found"> No waste found at this location</option>
+                <option value="wrong_location"> Wrong location marked on map</option>
+                <option value="already_cleaned"> Waste already cleaned by someone else</option>
+                <option value="inaccessible"> Location is inaccessible</option>
               </select>
             </div>
             
             <div style={{ margin: '1rem 0', padding: '1rem', background: '#EFF6FF', borderRadius: '10px' }}>
-              <p><strong>📍 Your current location:</strong></p>
+              <p><strong> Your current location:</strong></p>
               {completionLocation ? (
                 <p style={{ color: '#10B981' }}>
-                  ✅ Lat: {completionLocation.lat.toFixed(6)}<br />
-                  ✅ Lng: {completionLocation.lng.toFixed(6)}
+                  Lat: {completionLocation.lat.toFixed(6)}<br />
+                  Lng: {completionLocation.lng.toFixed(6)}
                 </p>
               ) : (
-                <p style={{ color: '#F59E0B' }}>📍 Getting your location...</p>
+                <p style={{ color: '#F59E0B' }}> Getting your location...</p>
               )}
             </div>
             
             <div style={{ background: '#FEE2E2', padding: '1rem', borderRadius: '10px', marginBottom: '1rem' }}>
               <p style={{ color: '#991B1B', margin: 0, fontSize: '0.85rem' }}>
-                ⚠️ <strong>Warning:</strong> Reporting fake waste will:
+                 <strong>Warning:</strong> Reporting fake waste will:
                 <br />• Deduct <strong>5 tokens</strong> from the reporter
                 <br />• Add <strong>2 tokens</strong> to your account as compensation
                 <br />• Reduce the reporter's reputation score

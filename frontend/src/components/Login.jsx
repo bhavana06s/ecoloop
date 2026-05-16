@@ -16,7 +16,7 @@ function Login({ onLogin, onRegister }) {
     formData.append('password', password);
     
     try {
-      const response = await fetch('http://localhost:8000/api/login', {
+      const response = await fetch('https://ecoloop-backend-hy7l.onrender.com/api/login', {
         method: 'POST',
         body: formData
       });
@@ -41,9 +41,9 @@ function Login({ onLogin, onRegister }) {
     <div className="login-container">
       <div className="login-card">
         <div className="login-header">
-          <div className="logo">🗑️</div>
+          <div className="logo"></div>
           <h2>Welcome Back!</h2>
-          <p>Login to continue cleaning the planet 🌍</p>
+          <p>Login to continue cleaning the planet </p>
         </div>
         
         <form onSubmit={handleSubmit}>
@@ -74,7 +74,7 @@ function Login({ onLogin, onRegister }) {
           )}
           
           <button type="submit" className="login-btn" disabled={loading}>
-            {loading ? 'Logging in...' : '🔐 Login'}
+            {loading ? 'Logging in...' : ' Login'}
           </button>
         </form>
         
@@ -83,7 +83,7 @@ function Login({ onLogin, onRegister }) {
         </div>
         
         <p style={{ textAlign: 'center', marginTop: '1rem', fontSize: '0.85rem', color: '#666' }}>
-          💡 No crypto needed! Wallet auto-generated with your email.
+           No crypto needed! Wallet auto-generated with your email.
         </p>
       </div>
     </div>

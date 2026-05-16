@@ -37,7 +37,7 @@ Cities struggle with three major issues:
 
 ### 🗺️ Live Waste Map
 - Real-time waste hotspots visualization
-- Color-coded markers (Red: Pending, Yellow: Accepted, Green: Cleaned)
+- coded markers 
 - Volunteer route optimization
 
 ### 💰 Blockchain Rewards

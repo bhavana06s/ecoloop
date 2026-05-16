@@ -35,14 +35,14 @@ function Register({ onLogin, onBack }) {
     formData.append('role', role);
     
     try {
-      const response = await fetch('http://localhost:8000/api/register', {
+      const response = await fetch('https://ecoloop-backend-hy7l.onrender.com/api/register', {
         method: 'POST',
         body: formData
       });
       const data = await response.json();
       
       if (data.success) {
-        alert(`✅ Account created successfully!\n\nYour Wallet: ${data.user.wallet}\n\nSave this wallet address for your records.`);
+        alert(` Account created successfully!\n\nYour Wallet: ${data.user.wallet}\n\nSave this wallet address for your records.`);
         localStorage.setItem('waste2earn_user', JSON.stringify(data.user));
         onLogin(data.user);
       } else {
@@ -60,9 +60,9 @@ function Register({ onLogin, onBack }) {
     <div className="login-container">
       <div className="login-card">
         <div className="login-header">
-          <div className="logo">🗑️</div>
+          <div className="logo"></div>
           <h2>Create Account</h2>
-          <p>Join the waste reduction movement! 🌱</p>
+          <p>Join the waste reduction movement! </p>
         </div>
         
         <form onSubmit={handleSubmit}>
@@ -72,14 +72,14 @@ function Register({ onLogin, onBack }) {
               className={`role-btn ${role === 'reporter' ? 'active' : ''}`}
               onClick={() => setRole('reporter')}
             >
-              📸 Reporter
+               Reporter
             </button>
             <button 
               type="button"
               className={`role-btn ${role === 'volunteer' ? 'active' : ''}`}
               onClick={() => setRole('volunteer')}
             >
-              💚 Volunteer
+               Volunteer
             </button>
           </div>
           
@@ -139,8 +139,8 @@ function Register({ onLogin, onBack }) {
         </div>
         
         <div style={{ marginTop: '1rem', fontSize: '0.8rem', color: '#666', textAlign: 'center' }}>
-          <p>✨ Your wallet will be automatically generated using your email</p>
-          <p>🔒 All data is encrypted and secure</p>
+          <p> Your wallet will be automatically generated using your email</p>
+          <p> All data is encrypted and secure</p>
         </div>
       </div>
     </div>

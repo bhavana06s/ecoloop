@@ -56,7 +56,7 @@ function App() {
     <div className="app">
       <nav className="navbar">
         <div className="nav-brand">
-          <span className="logo">🗑️</span>
+          <span className="logo"></span>
           <span className="brand-name">Waste2Earn</span>
         </div>
         
@@ -66,7 +66,7 @@ function App() {
               className={`nav-tab ${currentPage === 'report' ? 'active' : ''}`}
               onClick={() => setCurrentPage('report')}
             >
-              📸 Report Waste
+               Report Waste
             </button>
           )}
           {userRole === 'volunteer' && (
@@ -74,22 +74,22 @@ function App() {
               className={`nav-tab ${currentPage === 'volunteer' ? 'active' : ''}`}
               onClick={() => setCurrentPage('volunteer')}
             >
-              🗺️ Find Tasks
+               Find Tasks
             </button>
           )}
           <button 
             className={`nav-tab ${currentPage === 'leaderboard' ? 'active' : ''}`}
             onClick={() => setCurrentPage('leaderboard')}
           >
-            🏆 Leaderboard
+             Leaderboard
           </button>
         </div>
         
         <div className="user-info">
-          <span className="user-name">👤 {userName}</span>
-          <span className="user-email">📧 {userEmail}</span>
-          <span className="wallet-badge">💰 {userWallet.slice(0, 8)}...</span>
-          <button className="logout-btn" onClick={handleLogout}>🚪 Logout</button>
+          <span className="user-name"> {userName}</span>
+          <span className="user-email"> {userEmail}</span>
+          <span className="wallet-badge"> {userWallet.slice(0, 8)}...</span>
+          <button className="logout-btn" onClick={handleLogout}> Logout</button>
         </div>
       </nav>
       
